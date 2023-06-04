@@ -3,12 +3,17 @@ const path = require("path");
 
 const app = express();
 
-app.use(express.static("./public"))
+// setup static and middlewares
+app.use(express.static("./public"));
 
+
+// Home Page
 app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./navbar-app/index.html"));
 });
 
+
+// 404
 app.all("*", (req, res) => {
   res.status(404).send("<h1>Page not found</h1>");
 });
