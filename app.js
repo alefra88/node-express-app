@@ -1,24 +1,18 @@
-// const express = require("express");
-// const app = express();
+const express = require("express");
+const path = require("path");
 
-const app = require("express")();
+const app = express();
 
+app.use(express.static("./public"))
 
-//home page
 app.get("/", (req, res) => {
-  console.log("user hit de resource");
-  res.send("Hardcoded Home Page");
+  res.sendFile(path.resolve(__dirname, "./navbar-app/index.html"));
 });
 
+app.all("*", (req, res) => {
+  res.status(404).send("<h1>Page not found</h1>");
+});
 
-//about
-app.get("/about",(req,res)=>{
-  res.send("<h1>Hardcoded About Page</h1>")
-})
-
-app.all("*",(req,res)=>{
-  res.status(404).send("<h1>Resource not found</h1>")
-})
 app.listen(5000, () => {
-  console.log("server is listening on port 5000");
+  console.log("server is listening on port 5000...");
 });
