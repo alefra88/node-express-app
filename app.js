@@ -8,9 +8,9 @@ app.use(express.static("./public"));
 
 
 // Home Page
-app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./navbar-app/index.html"));
-});
+// app.get("/", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "./navbar-app/index.html"));
+// });
 
 
 // 404
