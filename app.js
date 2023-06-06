@@ -17,10 +17,17 @@ app.get("/api/products/:productID", (req, res) => {
   const singleProduct = products.find(
     (product) => product.id === Number(productID)
   );
-  if (!singleProduct) {
-    return res.status(404).send("something went wrong");
-  }
   res.json(singleProduct);
+});
+
+app.get("/api/products/:productID/reviews/:reviewID", (req, res) => {
+  res.send("hello wolrd from review");
+  console.log(req.params);
+});
+
+app.get("/api/v1/query", (req, res) => {
+  console.log(req.query);
+  res.send("hello world");
 });
 
 app.listen(5000, () => {
