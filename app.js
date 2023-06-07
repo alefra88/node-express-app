@@ -1,25 +1,12 @@
 const express = require("express");
 const app = express();
-const logger = require("./logger.js");
-const authorize = require("./authorize.js");
-const morgan = require("morgan");
-//midleware
-// app.use([logger, authorize]);
-app.use(morgan("tiny"));
-app.get("/", (req, res) => {
-  res.send("HOME HARDCODED");
-});
+let { people } = require("./data");
 
-app.get("/about", (req, res) => {
-  res.send("ABOUT HARDCODED");
-});
+//static assets
+app.use(express.static("./methods-public"));
 
-app.get("/api/userID", (req, res) => {
-  res.send([{ name: "Sandro", lastName: "Rococco" }]);
-});
-
-app.get("/api/items", [logger, authorize], (req, res) => {
-  res.send([{ some: "items", anotherSome: "items" }]);
+app.get("/api/people", (req, res) => {
+  res.status(200).json({ succes: true, data: people });
 });
 
 app.listen(5000, () => {
