@@ -3,7 +3,7 @@ const app = express();
 const logger = require("./logger.js");
 const authorize = require("./authorize.js");
 //midleware
-app.use([logger, authorize]);
+// app.use([logger, authorize]);
 app.get("/", (req, res) => {
   res.send("HOME HARDCODED");
 });
@@ -16,8 +16,8 @@ app.get("/api/userID", (req, res) => {
   res.send([{ name: "Sandro", lastName: "Rococco" }]);
 });
 
-app.get("/api/products", (req, res) => {
-  res.send("ABOUT HARDCODED");
+app.get("/api/items", [logger, authorize], (req, res) => {
+  res.send([{ some: "items", anotherSome: "items" }]);
 });
 
 app.listen(5000, () => {
