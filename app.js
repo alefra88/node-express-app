@@ -1,19 +1,22 @@
 const express = require("express");
 const app = express();
-
+const logger = require("./logger.js");
 //midleware
-const logger = (req, res, next) => {
-  const method = req.method;
-  const url = req.url;
-  const time = new Date().getFullYear();
-  console.log(method, url, time);
-};
+app.use(logger);
 
-app.get("/",logger, (req, res) => {
+app.get("/", (req, res) => {
   res.send("HOME HARDCODED");
 });
 
-app.get("/about",logger, (req, res) => {
+app.get("/about", (req, res) => {
+  res.send("ABOUT HARDCODED");
+});
+
+app.get("/api/userID", (req, res) => {
+  res.send([{ name: "Sandro", lastName: "Rococco" }]);
+});
+
+app.get("/api/products", (req, res) => {
   res.send("ABOUT HARDCODED");
 });
 
