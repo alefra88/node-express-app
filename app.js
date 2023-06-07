@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
 const logger = require("./logger.js");
+const authorize = require("./authorize.js");
 //midleware
-app.use(logger);
-
+app.use([logger, authorize]);
 app.get("/", (req, res) => {
   res.send("HOME HARDCODED");
 });
